@@ -39,10 +39,12 @@ public class ChatDetailActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         final String senderId = auth.getUid();
+//        here userID is from UsersAdapter and its originally from Users model.
         String receiveId = getIntent().getStringExtra("userId");
         String userName = getIntent().getStringExtra("userName");
         String profilePic = getIntent().getStringExtra("profilePic");
 
+//        here userName is actually id of layout of chat detail activity
         binding.username.setText(userName);
         Picasso.get().load(profilePic).placeholder(R.drawable.ic_baseline_photo_camera_24).into(binding.profileImage);
 
@@ -53,6 +55,7 @@ public class ChatDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+//       here we need the constructor in chatadapter
         final ArrayList<MessageModel> messageModels = new ArrayList<>();
         final ChatAdapter chatAdapter = new ChatAdapter(messageModels,this,receiveId);
 

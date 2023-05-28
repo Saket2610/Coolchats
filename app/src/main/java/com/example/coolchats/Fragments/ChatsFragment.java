@@ -52,6 +52,7 @@ public class ChatsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                    get children is user id in realtime database
                     Users users = dataSnapshot.getValue(Users.class);
                     users.setUserId(dataSnapshot.getKey());
                     if(!users.getUserId().equals(FirebaseAuth.getInstance().getUid())){

@@ -30,15 +30,14 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+        getSupportActionBar().hide();
         setContentView(binding.getRoot());
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        Button button = (Button) findViewById(R.id.btnSignUp);
+//        Button button = (Button) findViewById(R.id.btnSignUp);
 
 //        setContentView(R.layout.activity_sign_up);
-
-        getSupportActionBar().hide();
         progressDialog = new ProgressDialog(SignUpActivity.this);
         progressDialog.setTitle("Creating Account");
         progressDialog.setMessage("v r creating ur account");
@@ -49,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
                 if(!binding.txtUsername.getText().toString().isEmpty() && !binding.txtPassword.getText().toString().isEmpty() &&!binding.txtEmail.getText().toString().isEmpty()){
                     progressDialog.show();
                     mAuth.createUserWithEmailAndPassword(binding.txtEmail.getText().toString(),binding.txtPassword.getText().toString())
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressDialog.dismiss();
